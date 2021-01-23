@@ -1,21 +1,27 @@
 const express = require('express');
+const passport = require('passport');
 const app = express();
 const port = process.env.PORT || 5000;
 
-const nav = 
+const preNav = 
 [
-{link: "/books", name: "Books"}, 
-{link: "/authors", name: "Authors"},
-{link: "/login", name: "Login"},
-{link: "/signup", name: "Signup"},
-{link: "/add", name: "Add New Book"}
+    {link: "/login", name: "Login"},
+    {link: "/signup", name: "Signup"},
 ];
 
-const booksRouter = require('./src/routes/bookRoutes')(nav);
-const authRouter = require('./src/routes/authRoutes')(nav);
-const loginRouter = require('./src/routes/loginRoutes')(nav);
-const signRouter = require('./src/routes/signRoutes')(nav);
-const addRouter = require('./src/routes/addRoutes')(nav);
+const postNav =
+[
+    {link: "/books", name:"Books"},
+    {link: "/authors", name: "Authors"},
+    {link: "/add", name: "Update Books"},
+    {link: "/logout", name: "Logout"}
+];
+
+const booksRouter = require('./src/routes/bookRoutes')(postNav);
+const authRouter = require('./src/routes/authRoutes')(postNav);
+const loginRouter = require('./src/routes/loginRoutes')(preNav);
+const signRouter = require('./src/routes/signRoutes')(preNav);
+const addRouter = require('./src/routes/addRoutes')(postNav);
 
 app.use(express.static('./public'));
 app.use("/books", booksRouter);
@@ -30,7 +36,13 @@ app.set('views',__dirname + '/src/views');
 
 app.get('/', (req,res)=>
 {
-    res.render("index",{nav});
+    res.render("index",{preNav});
 });
+
+app.get('/logout', (req, res)=>
+{
+    req.logout();
+    res.redirect('/');
+})
 
 app.listen(port);

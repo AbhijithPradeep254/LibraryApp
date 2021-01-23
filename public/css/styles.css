@@ -160,14 +160,15 @@ a,a:hover {
 
 .panel-body
 {
-  padding: 30px;
-  margin: 30px;
+  padding: 0px 30px 30px 30px;
+  margin: 0px 30px 30px 30px;
   height: auto;
   width: auto;
 }
 
 .loginForm
 {
+  margin-top: 50px;
   padding: 20px;
   border: 1px solid black;
   margin-left: auto;
@@ -184,6 +185,16 @@ a,a:hover {
 .form-check
 {
   margin-bottom: 10px;
+}
+
+.alert-info
+{
+  margin-bottom: 20px;
+}
+
+.btnIndex
+{
+  margin-left: 25%;
 }
     
 .btn-twitter {background-color:#4099FF;color:#fff;}

@@ -27,11 +27,11 @@
     </div>
     <nav class="collapse navbar-collapse" role="navigation">
       <ul class="nav navbar-nav">
-        <%for(i=0;i<nav.length;i++){%>
-        <li>
-          <a href="<%=nav[i].link%>"><%=nav[i].name%></a>
-        </li>
-        <%}%>
+        <%for(i=0;i<preNav.length;i++){%>
+          <li>
+            <a href="<%=preNav[i].link%>"><%=preNav[i].name%></a>
+          </li>
+          <%}%>
       </ul>
       <ul class="nav navbar-right navbar-nav">
         <li class="dropdown">
@@ -86,15 +86,18 @@
       
       <div class="panel">
         <div class="panel-body">
+          <% if(locals.msg) { %>
+            <div class="alert alert-success" role="alert"><%=msg%></div>
+            <%}%>
           <form class="loginForm" id="signupId" action="/signup" method="POST">
             <div class="fieldDiv">
-              <input type="text" class="form-control" id="username" name="username" placeholder="Username" aria-describedby="emailHelp">
+              <input type="text" class="form-control" id="username" name="username" placeholder="Username" aria-describedby="emailHelp" required>
             </div>
             <div class="fieldDiv">
-                <input type="email" class="form-control" id="email" name="email" placeholder="Email" aria-describedby="emailHelp">
+                <input type="email" class="form-control" id="email" name="email" placeholder="Email" aria-describedby="emailHelp" required>
             </div>
             <div class="fieldDiv">
-              <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+              <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
             </div>
             <div class="fieldDiv">
               <input type="password" class="form-control" id="confPassword" name="confPassword" placeholder="Confirm Password">

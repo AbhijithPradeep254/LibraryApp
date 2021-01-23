@@ -2,7 +2,7 @@ const express = require('express');
 
 const authRouter = express.Router();
 
-router = nav =>
+router = postNav =>
 {
     var authors = 
     [
@@ -35,13 +35,13 @@ router = nav =>
 
     authRouter.get('/', (req,res) =>
     {
-        res.render("authors", {nav,authors});
+        res.render("authors", {postNav,authors});
     })
 
     authRouter.get('/:id', (req,res) =>
     {
         const id = req.params.id;
-        res.render("singleAuth", {nav, author : authors[id]});
+        res.render("singleAuth", {postNav, author : authors[id]});
     });
 
     return authRouter;
